@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 WORKDIR /AstrBot
 
 COPY . /AstrBot/
@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-dev \
     libffi-dev \
     libssl-dev \
+    vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

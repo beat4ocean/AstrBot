@@ -88,7 +88,7 @@ class AstrBotDashboard:
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             # 设置超时时间
             sock.settimeout(2)
-            result = sock.connect_ex(("127.0.0.1", port))
+            result = sock.connect_ex(("0.0.0.0", port))
             sock.close()
             # result 为 0 表示端口被占用
             return result == 0
@@ -122,8 +122,8 @@ class AstrBotDashboard:
     def run(self):
         ip_addr = []
         port = self.core_lifecycle.astrbot_config["dashboard"].get("port", 6185)
-        host = self.core_lifecycle.astrbot_config["dashboard"].get("host", "127.0.0.1")
-        if host not in ["localhost", "127.0.0.1"]:
+        host = self.core_lifecycle.astrbot_config["dashboard"].get("host", "0.0.0.0")
+        if host not in ["localhost", "0.0.0.0"]:
             try:
                 ip_addr = get_local_ip_addresses()
             except Exception as _:
